@@ -1,0 +1,129 @@
+/* Estilos para la página de Inventarios */
+.container {
+    width: 70vw;
+    margin: auto;
+    padding: 20px;
+    background-color: #E2E2B6;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    max-height: 95vh;
+  }
+
+  .title {
+    text-align: center;
+    color: #021526; /* Color principal */
+    font-size: 50px;
+  }
+  
+  .filtros {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+  
+  .filtros input {
+    padding: 10px;
+    border: 1px solid #03346E;
+    border-radius: 4px;
+    flex: 1;
+    margin-right: 10px;
+    font-size: 16px;
+  }
+  
+  .filtros button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px 5px; /* Espaciado entre botones */
+    border: none;
+    border-radius: 5px;
+    background-color: #03346E; /* Color de fondo de los botones */
+    color: white; /* Color del texto */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Efecto de transición */
+    width: 45%;
+  }
+  
+  .filtros button:hover {
+    background-color: #6EACDA;
+  }
+  
+  .tabla {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .tabla th {
+    background-color: #03346E;
+    color: white;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .tabla td {
+    padding: 10px;
+    border-bottom: 1px solid #6EACDA;
+    color: #021526;
+  }
+
+  .button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px 5px; /* Espaciado entre botones */
+    border: none;
+    border-radius: 5px;
+    background-color: #03346E; /* Color de fondo de los botones */
+    color: white; /* Color del texto */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Efecto de transición */
+  }
+  
+  .button:hover {
+    background-color: #6EACDA; /* Color al pasar el ratón */
+  }
+
+  .detalles {
+    background-color: #021526;
+    color: #E2E2B6;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+  }
+  
+  .detalles h2 {
+    color: white;
+    margin-bottom: 15px;
+    font-size: 50px;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .detalles p {
+    margin: 8px 0;
+    color: white;
+  }
+  
+  .detalles strong {
+    color: #E2E2B6;
+  }
+  
+  .detalles a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .detalles a:hover {
+    text-decoration: underline;
+  }
+  
+  .container {
+    display: flex;
+  }
+  
+  .mainContent {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  

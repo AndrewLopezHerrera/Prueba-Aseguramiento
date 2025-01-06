@@ -1,0 +1,29 @@
+{
+  "name": "importadoresserver",
+  "version": "1.0.0",
+  "description": "Este servidor conecta el frontend con la base de datos SQLServer, su principal función es la transferencia de datos",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/2024-Semestre-2/proyecto-1-AndrewLopezHerrera.git"
+  },
+  "author": "Andrew Denilson Lopez Herrera",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/2024-Semestre-2/proyecto-1-AndrewLopezHerrera/issues"
+  },
+  "homepage": "https://github.com/2024-Semestre-2/proyecto-1-AndrewLopezHerrera#readme",
+  "dependencies": {
+    "cookie": "^0.7.1",
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "mssql": "^11.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}

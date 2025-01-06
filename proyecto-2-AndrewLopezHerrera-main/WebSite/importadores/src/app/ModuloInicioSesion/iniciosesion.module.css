@@ -1,0 +1,69 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #021526; /* Color de fondo especificado */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+}
+
+.title {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #ffffff; /* Color de texto blanco */
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 300px; /* Ajusta el ancho como desees */
+}
+
+.formGroup {
+    margin-bottom: 15px;
+}
+
+.label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #ffffff; /* Color de etiqueta blanco */
+}
+
+.input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ffffff; /* Borde blanco */
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #0a1e30; /* Fondo de input en un tono oscuro */
+    color: #ffffff; /* Color de texto de input blanco */
+}
+
+.input:focus {
+    border-color: #00bfff; /* Color del borde al enfocar */
+    outline: none;
+}
+
+.button {
+    padding: 10px;
+    font-size: 16px;
+    color: white;
+    background-color: #0070f3; /* Color del botón */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #005bb5; /* Color del botón al pasar el ratón */
+}
+
+.message {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #e63946; /* Color rojo para errores */
+}

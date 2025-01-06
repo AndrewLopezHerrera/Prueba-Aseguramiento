@@ -1,0 +1,44 @@
+.screen{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.divlogo, .divbuttons{
+    width: 70vw;
+    height: 45vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.buttons{
+    width: 10vw;
+    height: 30vh;
+    border-radius: 2vh;
+    border: 1vw solid #03346E;
+    background-color: #03346E;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.buttons:hover {
+    transform: scale(1.1);
+}
+
+.images{
+    border-radius: 10vh;
+}
+
+.imagestext{
+    height: 20%;
+    color: #E2E2B6;
+    font-size: 20px;
+}

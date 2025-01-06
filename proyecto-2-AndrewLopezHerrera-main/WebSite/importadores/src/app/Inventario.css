@@ -1,0 +1,42 @@
+.container {
+    padding: 20px;
+  }
+  
+  .filtros {
+    margin-bottom: 20px;
+  }
+  
+  .filtros input {
+    margin-right: 10px;
+    padding: 8px;
+    font-size: 14px;
+  }
+  
+  button {
+    padding: 8px 12px;
+  }
+  
+  .tabla {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .tabla th, .tabla td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .tabla th {
+    background-color: #f2f2f2;
+    text-align: left;
+  }
+  
+  .tabla tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+  }
+  
+  .detalles {
+    margin-top: 20px;
+  }
+  

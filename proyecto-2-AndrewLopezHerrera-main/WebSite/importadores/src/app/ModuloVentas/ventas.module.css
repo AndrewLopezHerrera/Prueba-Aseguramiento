@@ -1,0 +1,139 @@
+/* Estilos para la página de Ventas */
+.container {
+  max-width: 1500;
+  margin: auto;
+  padding: 20px;
+  background-color: #E2E2B6;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+  }
+  
+  .filtros {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-direction: column;
+  }
+  
+  .filtros input {
+    padding: 10px;
+    border: 1px solid #03346E;
+    border-radius: 5px;
+    background-color: white;
+    color: #021526;
+  }
+
+  .filtros small {
+    color: #021526;
+  }
+  
+  .botonesFiltro{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: space-around;
+  }
+
+  .botonesFiltro button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px 5px; /* Espaciado entre botones */
+    border: none;
+    border-radius: 5px;
+    background-color: #03346E; /* Color de fondo de los botones */
+    color: white; /* Color del texto */
+    cursor: pointer;
+    width: 45%;
+  }
+  
+  .tabla {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  .title{
+    text-align: center;
+    color: #021526;
+    font-size: 50px;
+  }
+
+  .encabezado p{
+    color: #03346E;
+  }
+
+  .encabezado h3{
+    text-align: center;
+    font-size: 30px;
+  }
+  
+  .tabla th {
+    background-color: #03346E;
+    color: white;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .tabla td {
+    padding: 30px;
+    border-bottom: 1px solid #021526;
+    color: #021526;
+  }
+
+  .button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px 5px; /* Espaciado entre botones */
+    border: none;
+    border-radius: 5px;
+    background-color: #03346E; /* Color de fondo de los botones */
+    color: white; /* Color del texto */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Efecto de transición */
+  }
+  
+  .button:hover {
+    background-color: #6EACDA; /* Color más oscuro al pasar el mouse */
+  }
+  
+  .detalles {
+    background-color: #03346E;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+  }
+  
+  .detalles h2, .detalles h3 {
+    color: #6EACDA;
+  }
+  
+  .detalles table th, .detalles table td {
+    color: #E2E2B6;
+  }
+
+  .detalles p{
+    color: #021526;
+  }
+  
+  .detalles table {
+    width: 100%;
+    margin-top: 10px;
+    border-collapse: collapse;
+  }
+  
+  .detalles table th, .detalles table td {
+    padding: 10px;
+    border-bottom: 1px solid #021526;
+    color: #021526;
+  }
+  
+  .detalles a {
+    color: #6EACDA;
+    text-decoration: none;
+  }
+  
+  .detalles a:hover {
+    text-decoration: underline;
+  }
+  

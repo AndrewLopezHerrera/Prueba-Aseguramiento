@@ -1,0 +1,114 @@
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background-color: #E2E2B6;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .title h1{
+    text-align: center;
+    color: #021526;
+    font-size: 50px;
+  }
+  
+  .filtros {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+  
+  .filtros input {
+    padding: 10px;
+    border: 1px solid #03346E;
+    border-radius: 4px;
+    flex: 1;
+    margin-right: 10px;
+    font-size: 16px;
+  }
+  
+  .filtros button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px 5px; /* Espaciado entre botones */
+    border: none;
+    border-radius: 5px;
+    background-color: #03346E; /* Color de fondo de los botones */
+    color: white; /* Color del texto */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Efecto de transición */
+    width: 45%;
+  }
+  
+  .filtros button:hover {
+    background-color: #6EACDA; /* Color más oscuro al pasar el mouse */
+  }
+  
+  .tabla {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .tabla th,
+  .tabla td {
+    padding: 20px;
+    text-align: left;
+    border-bottom: 1px solid #021526;
+    color: #021526;
+  }
+  
+  .tabla th {
+    background-color: #021526;
+    color: white;
+  }
+
+  .button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px 5px; /* Espaciado entre botones */
+    border: none;
+    border-radius: 5px;
+    background-color: #03346E; /* Color de fondo de los botones */
+    color: white; /* Color del texto */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Efecto de transición */
+  }
+  
+  .button:hover {
+    background-color: #6EACDA; /* Color más oscuro al pasar el mouse */
+  }
+
+  .detailCard {
+    background-color: #021526;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .detailCard p {
+    color: #E2E2B6;
+    margin: 8px 0;
+  }
+  
+  .locationTitle {
+    color: #ffffff;
+    text-align: center;
+    font-size: 50px;
+  }
+  
+  .iframe {
+    width: 100%;
+    height: 400px;
+    border: none;
+    border-radius: 8px;
+  }
+  .link {
+    color: #E2E2B6;
+    text-decoration: none;
+  }
+  .link:hover {
+    text-decoration: underline;
+  }
+  
