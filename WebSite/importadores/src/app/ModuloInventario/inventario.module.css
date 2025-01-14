@@ -1,13 +1,11 @@
 /* Estilos para la página de Inventarios */
 .container {
-    width: 70vw;
+    max-width: 800px;
     margin: auto;
     padding: 20px;
     background-color: #E2E2B6;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    overflow-y: auto;
-    max-height: 95vh;
   }
 
   .title {
@@ -116,14 +114,4 @@
   .detalles a:hover {
     text-decoration: underline;
   }
-  
-  .container {
-    display: flex;
-  }
-  
-  .mainContent {
-    flex: 1;
-    padding: 20px;
-  }
-  
   

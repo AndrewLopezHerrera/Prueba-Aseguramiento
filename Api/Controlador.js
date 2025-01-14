@@ -1,3 +1,5 @@
+const { sql } = require('./dbconfig');
+
 /**
  * @class Controlador
  * @description Esta clase actúa como el controlador principal de la aplicación, 
@@ -12,10 +14,8 @@ class Controlador {
    * @description Inicializa una nueva instancia del controlador con la configuración SQL proporcionada.
    * @param {object} sql - Objeto de configuración para la conexión a SQLServer.
    */
-  constructor(sqlServer1, sqlServer2, sqlServer3) {
-    this.SQLServer1 = sqlServer1;
-    this.SQLServer2 = sqlServer2;
-    this.SQLServer3 = sqlServer3;
+  constructor(sql) {
+    this.SQL = sql;
   }
 
   /**
@@ -25,8 +25,8 @@ class Controlador {
    * @returns {Promise<Array>} Una lista de clientes que coinciden con el nombre ingresado.
    */
   async ConsultarClientes(nombre) {
-    const request = new this.SQLServer1.Request(); 
-    request.input('NombreIngresado', this.SQLServer1.NVarChar, nombre); 
+    const request = new this.SQL.Request(); 
+    request.input('NombreIngresado', this.SQL.NVarChar, nombre); 
     const result = await request.execute('FILTERCLI'); 
     return result.recordset;
   }
@@ -38,8 +38,8 @@ class Controlador {
    * @returns {Promise<Object>} Un objeto que contiene toda la información del cliente consultado.
    */
   async ConsultarClienteEspecifico(id) {
-    const request = new this.SQLServer1.Request();
-    request.input('IDIngresado', this.SQLServer1.Int, id);
+    const request = new this.SQL.Request();
+    request.input('IDIngresado', this.SQL.Int, id);
     const result = await request.execute('SELECTCLI');
     const cliente = result.recordset[0];
     return cliente;
@@ -51,7 +51,7 @@ class Controlador {
    * @returns {Promise<void>} Indica que la operación de limpieza fue exitosa.
    */
   async LimpiarAlmacenCliente(){
-    const request = new this.SQLServer1.Request();
+    const request = new this.SQL.Request();
     await request.execute('CLEARCLIFILTER');
   }
 
@@ -63,10 +63,13 @@ class Controlador {
    * @returns {Promise<Array>} Una lista de proveedores que coinciden con los filtros aplicados.
    */
   async ConsultarProveedores(nombre, categoria) {
-    const request = new this.SQLServer1.Request();
-    request.input('Name', this.SQLServer1.NVarChar, nombre);
-    request.input('Category', this.SQLServer1.NVarChar, categoria);
+    const request = new this.SQL.Request();
+    request.input('Name', this.SQL.NVarChar, nombre);
+    request.input('Category', this.SQL.NVarChar, categoria);
     const result = await request.execute('FILTERSUPPLIERS'); 
+    if (nombre !== "" && categoria !== "") {
+      return this.AlmacenProveedores.AgregarElementos(result.recordset);
+    }
     return result.recordset;
   }
 
@@ -77,8 +80,8 @@ class Controlador {
    * @returns {Promise<Object>} Un objeto que contiene toda la información del proveedor consultado.
    */
   async ConsultarProveedorEspecifico(id) {
-    const request = new this.SQLServer1.Request();
-    request.input('ID', this.SQLServer1.Int, id);
+    const request = new this.SQL.Request();
+    request.input('ID', this.SQL.Int, id);
     const result = await request.execute('SELECTSUPPLIER');
     return result.recordset[0];
   }
@@ -89,7 +92,7 @@ class Controlador {
    * @returns {Promise<void>} Indica que la operación de limpieza fue exitosa.
    */
   async LimpiarAlmacenProveedores(){
-    const request = new this.SQLServer1.Request();
+    const request = new this.SQL.Request();
     await request.execute('CLEARCUSFILTER');
   }
 
@@ -101,9 +104,9 @@ class Controlador {
    * @returns {Promise<Array>} Una lista de productos que coinciden con los filtros aplicados.
    */
   async ConsultarInventario(nombre, grupo) {
-    const request = new this.SQLServer1.Request();
-    request.input('Name', this.SQLServer1.NVarChar, nombre);
-    request.input('Group', this.SQLServer1.NVarChar, grupo);
+    const request = new this.SQL.Request();
+    request.input('Name', this.SQL.NVarChar, nombre);
+    request.input('Group', this.SQL.NVarChar, grupo);
     const result = await request.execute('FILTERSTOCK');
     return result.recordset;
   }
@@ -115,8 +118,8 @@ class Controlador {
    * @returns {Promise<Object>} Un objeto que contiene toda la información del producto consultado.
    */
   async ConsultarProductoEspecifico(id) {
-    const request = new this.SQLServer1.Request();
-    request.input('ID', this.SQLServer1.Int, id);
+    const request = new this.SQL.Request();
+    request.input('ID', this.SQL.Int, id);
     const result = await request.execute('SELECTSTOCK');
     return result.recordset[0];
   }
@@ -127,7 +130,7 @@ class Controlador {
    * @returns {Promise<void>} Indica que la operación de limpieza fue exitosa.
    */
   async LimpiarAlmacenInventario(){
-    const request = new this.SQLServer1.Request();
+    const request = new this.SQL.Request();
     await request.execute('CLEARSTSTFILTER');
   }
 
@@ -142,12 +145,12 @@ class Controlador {
    * @returns {Promise<Array>} Una lista de facturas que coinciden con los criterios de búsqueda.
    */
   async ConsultarFacturas(fechaInicial, fechaFinal, nombreCliente, montoInicial, montoFinal) {
-    const request = new this.SQLServer1.Request();
-    request.input('InvoiceDateStart', this.SQLServer1.Date, fechaInicial);
-    request.input('InvoiceDateEnd', this.SQLServer1.Date, fechaFinal);
-    request.input('CustomerName', this.SQLServer1.NVarChar, nombreCliente);
-    request.input('MontoInicial', this.SQLServer1.Decimal, montoInicial);
-    request.input('MontoFinal', this.SQLServer1.Decimal, montoFinal);
+    const request = new this.SQL.Request();
+    request.input('InvoiceDateStart', this.SQL.Date, fechaInicial);
+    request.input('InvoiceDateEnd', this.SQL.Date, fechaFinal);
+    request.input('CustomerName', this.SQL.NVarChar, nombreCliente);
+    request.input('MontoInicial', this.SQL.Decimal, montoInicial);
+    request.input('MontoFinal', this.SQL.Decimal, montoFinal);
     const result = await request.execute('FILTERINVOICES');
     return result.recordset.slice(0, 501);
   }
@@ -159,11 +162,12 @@ class Controlador {
    * @returns {Promise<Object>} Un objeto que contiene la factura y las líneas de la misma.
    */
   async ConsultarFacturaEspecifica(id) {
-    const requestOne = new this.SQLServer1.Request();
-    requestOne.input('ID', this.SQLServer1.Int, id);
+    const requestOne = new this.SQL.Request();
+    requestOne.input('ID', this.SQL.Int, id);
     const resultOne = await requestOne.execute('SELECTCUSTOMERSALES');
-    const requestTwo = new this.SQLServer1.Request();
-    requestTwo.input('ID', this.SQLServer1.Int, id);
+    
+    const requestTwo = new this.SQL.Request();
+    requestTwo.input('ID', this.SQL.Int, id);
     const resultTwo = await requestTwo.execute('SELECTLINESINVOICE');
     
     return { factura: resultOne.recordset[0], lineasfactura: resultTwo.recordset };
@@ -175,7 +179,7 @@ class Controlador {
    * @returns {Promise<void>} Indica que la operación de limpieza fue exitosa.
    */
   async LimpiarAlmacenFacturas(){
-    const request = new this.SQLServer1.Request();
+    const request = new this.SQL.Request();
     await request.execute('CLEARINVFILTER');
   }
 
@@ -187,9 +191,9 @@ class Controlador {
    * @returns {Promise<Array>} Estadísticas de los proveedores que coinciden con los filtros aplicados.
    */
   async VerEstadisticasProveedores(nombre, categoria) {
-    const request = new this.SQLServer3.Request();
-    request.input('CategoryInput', this.SQLServer3.NVarChar, categoria);
-    request.input('SupplierNameInput', this.SQLServer3.NVarChar, nombre);
+    const request = new this.SQL.Request();
+    request.input('CategoryInput', this.SQL.NVarChar, categoria);
+    request.input('SupplierNameInput', this.SQL.NVarChar, nombre);
     const result = await request.execute('WATCHSTATSSUPPLIERS');
     return result.recordset;
   }
@@ -202,123 +206,11 @@ class Controlador {
    * @returns {Promise<Array>} Estadísticas de los clientes que coinciden con los filtros aplicados.
    */
   async VerEstadisticasClientes(nombre, categoria) {
-    const request = new this.SQLServer3.Request();
-    request.input('CategoryNameInput', this.SQLServer3.NVarChar, categoria);
-    request.input('CustomerNameInput', this.SQLServer3.NVarChar, nombre);
+    const request = new this.SQL.Request();
+    request.input('CategoryNameInput', this.SQL.NVarChar, categoria);
+    request.input('CustomerNameInput', this.SQL.NVarChar, nombre);
     const result = await request.execute('WATCHSTATSCUSTOMERS');
     return result.recordset.slice(0, 501);
-  }
-
-  async IniciarSesion(nombre, contrasena){
-    const request = new this.SQLServer1.Request();
-    request.input('@userName', this.SQLServer1.NVarChar, nombre);
-    request.input('@passwordUser', this.SQLServer1.NVarChar, contrasena);
-    const result = await request.execute('loginUser');
-    return result.recordset[0];
-  }
-
-  async ActualizarProducto(
-    StockItemID,
-    StockItemName,
-    SupplierID,
-    ColorID,
-    UnitPackageID,
-    OuterPackageID,
-    Brand,
-    Size,
-    LeadTimeDays,
-    QuantityPerOuter,
-    IsChillerStock,
-    Barcode,
-    TaxRate,
-    UnitPrice,
-    RecommendedRetailPrice,
-    TypicalWeightPerUnit,
-    MarketingComments,
-    InternalComments,
-    Photo,
-    CustomFields,
-    LastEditedBy
-  ) {
-    const request = new this.SQL.Request();
-    request.input('@StockItemID', this.SQL.Int, StockItemID);
-    request.input('@StockItemName', this.SQL.NVarChar(100), StockItemName);
-    request.input('@SupplierID', this.SQL.Int, SupplierID);
-    request.input('@ColorID', this.SQL.Int, ColorID);
-    request.input('@UnitPackageID', this.SQL.Int, UnitPackageID);
-    request.input('@OuterPackageID', this.SQL.Int, OuterPackageID);
-    request.input('@Brand', this.SQL.NVarChar(50), Brand);
-    request.input('@Size', this.SQL.NVarChar(20), Size);
-    request.input('@LeadTimeDays', this.SQL.Int, LeadTimeDays);
-    request.input('@QuantityPerOuter', this.SQL.Int, QuantityPerOuter);
-    request.input('@IsChillerStock', this.SQL.Bit, IsChillerStock);
-    request.input('@Barcode', this.SQL.NVarChar(50), Barcode);
-    request.input('@TaxRate', this.SQL.Decimal(18, 3), TaxRate);
-    request.input('@UnitPrice', this.SQL.Decimal(18, 2), UnitPrice);
-    request.input('@RecommendedRetailPrice', this.SQL.Decimal(18, 2), RecommendedRetailPrice);
-    request.input('@TypicalWeightPerUnit', this.SQL.Decimal(18, 3), TypicalWeightPerUnit);
-    request.input('@MarketingComments', this.SQL.NVarChar(this.SQL.MAX), MarketingComments);
-    request.input('@InternalComments', this.SQL.NVarChar(this.SQL.MAX), InternalComments);
-    request.input('@Photo', this.SQL.VarBinary(this.SQL.MAX), Photo);
-    request.input('@CustomFields', this.SQL.NVarChar(this.SQL.MAX), CustomFields);
-    request.input('@LastEditedBy', this.SQL.Int, LastEditedBy);
-    const result = await request.execute('UPDATESTOCKITEM');
-    return result.recordset[0];
-  }
-
-  async InsertarProducto(
-    StockItemName,
-    SupplierID,
-    ColorID,
-    UnitPackageID,
-    OuterPackageID,
-    Brand,
-    Size,
-    LeadTimeDays,
-    QuantityPerOuter,
-    IsChillerStock,
-    Barcode,
-    TaxRate,
-    UnitPrice,
-    RecommendedRetailPrice,
-    TypicalWeightPerUnit,
-    MarketingComments,
-    InternalComments,
-    Photo,
-    CustomFields,
-    LastEditedBy
-  ) {
-    const request = new this.SQLServer1.Request();
-    request.input('StockItemName', this.SQLServer1.NVarChar(100), StockItemName);
-    request.input('SupplierID', this.SQLServer1.Int, SupplierID);
-    request.input('ColorID', this.SQLServer1.Int, ColorID);
-    request.input('UnitPackageID', this.SQLServer1.Int, UnitPackageID);
-    request.input('OuterPackageID', this.SQLServer1.Int, OuterPackageID);
-    request.input('Brand', this.SQLServer1.NVarChar(50), Brand);
-    request.input('Size', this.SQLServer1.NVarChar(20), Size);
-    request.input('LeadTimeDays', this.SQLServer1.Int, LeadTimeDays);
-    request.input('QuantityPerOuter', this.SQLServer1.Int, QuantityPerOuter);
-    request.input('IsChillerStock', this.SQLServer1.Bit, IsChillerStock);
-    request.input('Barcode', this.SQLServer1.NVarChar(50), Barcode);
-    request.input('TaxRate', this.SQLServer1.Decimal(18, 3), TaxRate);
-    request.input('UnitPrice', this.SQLServer1.Decimal(18, 2), UnitPrice);
-    request.input('RecommendedRetailPrice', this.SQLServer1.Decimal(18, 2), RecommendedRetailPrice);
-    request.input('TypicalWeightPerUnit', this.SQLServer1.Decimal(18, 3), TypicalWeightPerUnit);
-    request.input('MarketingComments', this.SQLServer1.NVarChar(this.SQL.MAX), MarketingComments);
-    request.input('InternalComments', this.SQLServer1.NVarChar(this.SQL.MAX), InternalComments);
-    request.input('Photo', this.SQLServer1.VarBinary(this.SQL.MAX), Photo);
-    request.input('CustomFields', this.SQLServer1.NVarChar(this.SQL.MAX), CustomFields);
-    request.input('LastEditedBy', this.SQLServer1.Int, LastEditedBy);
-    const result = await request.execute('INSERTSTOCKITEM');
-    return result.recordset[0];
-  }
-  
-
-  async EliminarProducto(stockItemid){
-    const request = new this.SQLServer1.Request();
-    request.input('@StockItemID', this.SQLServer1.Int, stockItemid);
-    const result = await request.execute('loginUser');
-    return result.recordset[0];
   }
 }
 
